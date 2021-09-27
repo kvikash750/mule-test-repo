@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="4da972ce-18e4-4543-9281-7d2e015925c6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<configuration doc:name="Configuration" doc:id="188de378-eeea-41f5-b99a-827316b76728" defaultErrorHandler-ref="global-errorError_Handler" />
+	<flow name="globalerrorhandlerpoc1Flow" doc:id="915eb491-820f-44ae-bde1-4667288104ca" >
+		<http:listener doc:name="Listener" doc:id="6ce8a449-173c-4ac5-ba1b-086f53a1c1b0" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="1753983b-95c3-4722-a372-786b0e8d3599" />
+		<logger level="INFO" doc:name="Logger" doc:id="298b968a-aef7-4ac0-9d50-24b880821f4a" />
+		<validation:is-null doc:name="Is null" doc:id="16e69fb9-7802-4c61-bfe2-3566a917992c" value="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="317ccd35-1962-4100-a69c-a6ab128e5203" />
+		<logger level="INFO" doc:name="Logger" doc:id="a49e6b2a-4c6c-48ff-8add-6c1a7bed657f" />
+	</flow>
+</mule>
